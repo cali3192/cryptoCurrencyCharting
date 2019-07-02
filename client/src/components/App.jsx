@@ -15,7 +15,7 @@ export default class App extends Component {
 
   componentDidMount() {
     Axios.get(
-      'https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05'
+      'https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-04-01&end=2019-07-01'
     )
       .then(({ data }) => {
         let dataArr = [];
