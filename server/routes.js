@@ -3,4 +3,6 @@ const BitControllers = require('./controller.js');
 
 BitRouter.route('/bitcoinTracker').get(BitControllers.retrieve);
 
-module.exports = BitRouter 
+BitRouter.route('/bitcoinTracker/:currency').get(BitControllers.convert);
+
+module.exports = BitRouter;

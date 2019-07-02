@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 app.use(BitRouter);
 
-const PORT = 6500;
+const PORT = process.env.PORT || 6500;
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
