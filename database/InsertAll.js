@@ -57,5 +57,5 @@ const insertAll = currency => {
 };
 
 // insertAll('USD'); // 92
-insertAll('GBP');
+// insertAll('GBP');
 // insertAll('EUR'); // 92
