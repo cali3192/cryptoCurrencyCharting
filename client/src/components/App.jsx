@@ -22,7 +22,7 @@ export default class App extends Component {
   }
 
   getBTC() {
-    Axios.get('https://api.coincap.io/v2/assets/bitcoin/history?interval=d1')
+    Axios.get('/coin/bitcoin')
       .then(({ data }) => {
         this.setState({
           rate: data.data,
@@ -34,7 +34,7 @@ export default class App extends Component {
   }
 
   getETH() {
-    Axios.get('https://api.coincap.io/v2/assets/ethereum/history?interval=d1')
+    Axios.get('/coin/ethereum')
       .then(({ data }) => {
         this.setState({
           rate: data.data,
@@ -46,21 +46,7 @@ export default class App extends Component {
   }
 
   getXRP() {
-    Axios.get('https://api.coincap.io/v2/assets/ripple/history?interval=d1')
-      .then(({ data }) => {
-        this.setState({
-          rate: data.data,
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }
-
-  getBCH() {
-    Axios.get(
-      'https://api.coincap.io/v2/assets/bitcoin-cash/history?interval=d1'
-    )
+    Axios.get('/coin/ripple')
       .then(({ data }) => {
         this.setState({
           rate: data.data,
@@ -72,7 +58,19 @@ export default class App extends Component {
   }
 
   getLTC() {
-    Axios.get('https://api.coincap.io/v2/assets/litecoin/history?interval=d1')
+    Axios.get('/coin/litecoin')
+      .then(({ data }) => {
+        this.setState({
+          rate: data.data,
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  getBCH() {
+    Axios.get('/coin/bitcoin-cash')
       .then(({ data }) => {
         this.setState({
           rate: data.data,
@@ -98,38 +96,38 @@ export default class App extends Component {
             <LoadingSpinner />
           )}
           <div className="row">
-            <div className="col-md-3" />
+            <div className="col-md-1" />
             <div className="col-md-auto">
               <div className="btn-group" role="group" aria-label="Crypto Coins">
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={this.getBTC}>
-                  Bitcoin
+                  Bitcoin (BTC)
                 </button>
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={this.getETH}>
-                  Ethereum
+                  Ethereum (ETH)
                 </button>
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={this.getXRP}>
-                  XRP
+                  Ripple XRP (XRP)
                 </button>
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={this.getLTC}>
-                  Litecoin
+                  Litecoin (LTC)
                 </button>
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={this.getBCH}>
-                  Bitcoin Cash
+                  Bitcoin Cash (BCH)
                 </button>
               </div>
             </div>

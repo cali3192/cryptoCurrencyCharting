@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "webpack -d --watch",
-    "insert-price": "node database/InsertAll.js"
+    "insert-price": "node database/InsertAll.js",
+    "load": "node database/index.js database/CryptoSchema.js "
   },
   "repository": {
     "type": "git",
