@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import LineChart from './LineChart.jsx';
 import Axios from 'axios';
 import LoadingSpinner from './LoadingSpinner.jsx';
+import LivePrice from './LivePrice.jsx';
 
 export default class App extends Component {
   constructor(props) {
@@ -90,14 +91,18 @@ export default class App extends Component {
           </a>
         </nav>
         <div className="container-fluid">
-          {this.state.rate.length > 0 ? (
-            <LineChart data={this.state.rate} />
-          ) : (
-            <LoadingSpinner />
-          )}
           <div className="row">
-            <div className="col-md-1" />
-            <div className="col-md-auto">
+            <LivePrice />
+            {this.state.rate.length > 0 ? (
+              <LineChart data={this.state.rate} />
+            ) : (
+              <LoadingSpinner />
+            )}
+          </div>
+
+          <div className="row">
+            <div className="col-4" />
+            <div className="col-8">
               <div className="btn-group" role="group" aria-label="Crypto Coins">
                 <button
                   type="button"
@@ -131,7 +136,6 @@ export default class App extends Component {
                 </button>
               </div>
             </div>
-            <div className="col-md-3" />
           </div>
         </div>
       </Fragment>
