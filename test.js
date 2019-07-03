@@ -142,7 +142,11 @@ const moment = require('moment');
 const date1 = moment('2019-07-03')
   .subtract(3, 'month')
   .format('YYYY-MM-DD');
-// console.log('date1', date1);
+console.log('date1', date1);
 
 const endDate = moment(new Date()).format('YYYY-MM-DD');
 console.log('endDate', typeof endDate);
+
+console.log('date1 in unix', moment(date1).format('x'));
+
+console.log('endDate in unix', moment(endDate).format('x'));

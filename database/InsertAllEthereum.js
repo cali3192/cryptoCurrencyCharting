@@ -1,6 +1,6 @@
-// INSERT ALL FOR
+// INSERT ALL FOR ETHEREUM
 const axios = require('axios');
-const { USD, GBP, EUR } = require('./index.js');
+const { USD, GBP, EUR } = require('./EthereumSchema.js');
 
 const insertAll = currency => {
   const endDate = moment(new Date()).format('YYYY-MM-DD');
