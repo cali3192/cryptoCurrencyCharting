@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "webpack -d --watch",
-    "insert-price": "node database/InsertAll.js"
+    "insert-price": "node database/InsertAll.js",
+    "load": "node database/index.js database/CryptoSchema.js "
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,10 @@
   },
   "homepage": "https://github.com/cali3192/cryptoCurrencyCharting#readme",
   "dependencies": {
+    "@emotion/core": "^10.0.14",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+    "chart.js": "^2.8.0",
     "express": "^4.17.1",
     "moment": "^2.24.0",
     "mongoose": "^5.6.2",
@@ -28,7 +31,9 @@
     "nodemon": "^1.19.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "react-chartjs-2": "^2.7.6",
+    "react-spinners": "^0.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

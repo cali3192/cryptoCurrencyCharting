@@ -1,13 +1,10 @@
-const BitRouter = require('express').Router();
-const BitControllers = require('./controller.js');
-const Models = require('../database/models.js');
+const router = require('express').Router();
+const bitControllers = require('./controller.js');
 
-BitRouter.get('/USD', Models.getUSD)
-  .get('/EUR', Models.getEUR)
-  .get('/GBP', Models.getGBP)
-  .get('/ETH', Models.getETH)
-  .get('/BCH', Models.getBCH)
-  .get('/RIP', Models.getRIP)
-  .get('/LTC', Models.getLTC);
+router.get('/coin/bitcoin', bitControllers.getBitcoin);
+router.get('/coin/ethereum', bitControllers.getEthereum);
+router.get('/coin/ripple', bitControllers.getRipple);
+router.get('/coin/litecoin', bitControllers.getLitecoin);
+router.get('/coin/bitcoin-cash', bitControllers.getBitcoinCash);
 
-module.exports = BitRouter;
+module.exports = router;
