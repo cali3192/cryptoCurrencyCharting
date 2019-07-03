@@ -13,8 +13,8 @@ export default class App extends Component {
     this.getBTC = this.getBTC.bind(this);
     this.getETH = this.getETH.bind(this);
     this.getXRP = this.getXRP.bind(this);
+    this.getLTC = this.getLTC.bind(this);
     this.getBCH = this.getBCH.bind(this);
-    this.getEOS = this.getEOS.bind(this);
   }
 
   componentDidMount() {
@@ -71,8 +71,8 @@ export default class App extends Component {
       });
   }
 
-  getEOS() {
-    Axios.get('https://api.coincap.io/v2/assets/eos/history?interval=d1')
+  getLTC() {
+    Axios.get('https://api.coincap.io/v2/assets/litecoin/history?interval=d1')
       .then(({ data }) => {
         this.setState({
           rate: data.data,
@@ -122,14 +122,14 @@ export default class App extends Component {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={this.getBCH}>
-                  Bitcoin Cash
+                  onClick={this.getLTC}>
+                  Litecoin
                 </button>
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={this.getEOS}>
-                  EOS
+                  onClick={this.getBCH}>
+                  Bitcoin Cash
                 </button>
               </div>
             </div>
