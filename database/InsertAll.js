@@ -1,12 +1,13 @@
+const axios = require('axios');
+const { USD, GBP, EUR } = require('./index.js');
+
 const insertAll = currency => {
   axios
     .get(
       `https://api.coindesk.com/v1/bpi/historical/close.json?currency=${currency}&start=2019-04-02&end=2019-07-02`
     )
     .then(data => {
-      // load this data into our db
-      // Goal: To get the key value pairs in the collection
-      const { bpi } = data;
+      const { bpi } = data.data;
       let arr = [];
       for (var key in bpi) {
         const obj = {
@@ -14,6 +15,7 @@ const insertAll = currency => {
         };
         arr.push(obj);
       }
+      // console.log('arr', arr);
 
       Promise.all(
         arr.map(element => {
@@ -30,7 +32,7 @@ const insertAll = currency => {
               }
             });
           } else if (currency === 'GBP') {
-            USD.create(newEntry, (err, data) => {
+            GBP.create(newEntry, (err, data) => {
               if (err) {
                 console.log('err', err);
               } else {
@@ -54,6 +56,6 @@ const insertAll = currency => {
     });
 };
 
-insertAll('USD');
+// insertAll('USD'); // 92
 insertAll('GBP');
-insertAll('EUR');
+// insertAll('EUR'); // 92

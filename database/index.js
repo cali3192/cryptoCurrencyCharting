@@ -14,11 +14,10 @@ var bitcoinSchema = new Schema({
   price: Number
 });
 
-// Register the pokemonSchema with Mongoose as the 'Pokemon' collection.
 const USD = mongoose.model('USDModel', bitcoinSchema);
 
-const GPB = mongoose.model('GPBModel', bitcoinSchema);
+const GBP = mongoose.model('GBPModel', bitcoinSchema);
 
 const EUR = mongoose.model('EURModel', bitcoinSchema);
 
-module.exports = { db, USD, GPB, EUR };
+module.exports = { db, USD, GBP, EUR };
