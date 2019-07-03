@@ -47,7 +47,7 @@ export default class LineChart extends Component {
     };
 
     return (
-      <div className="col-md-10">
+      <div className="col-8">
         <Line data={myData} options={chartOptions} />
       </div>
     );
