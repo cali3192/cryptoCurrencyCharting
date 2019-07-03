@@ -1,4 +1,4 @@
-const Helpers = require('../helperFunctions/helpers.js');
+const { getBitcoinData } = require('../helperFunctions/helpers.js');
 const axios = require('axios');
 
 module.exports.retrieve = (req, res) => {
@@ -30,4 +30,3 @@ module.exports.convert = (req, res) => {
       console.log('err in convert', err);
     });
 };
-

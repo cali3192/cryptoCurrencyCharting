@@ -1,10 +1,12 @@
 const axios = require('axios');
+const moment = require('moment');
 // const request = require('request');
 
 module.exports.getBitcoinData = cb => {
+  const endDate = moment(new Date()).format('YYYY-MM-DD');
   axios
     .get(
-      `https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-04-02&end=2019-07-02`
+      `https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-04-02&end=${endDate}`
     )
     .then(data => {
       console.log('data from Axios request from Helpers', data.data);

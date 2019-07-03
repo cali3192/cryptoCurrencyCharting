@@ -2,9 +2,11 @@ const axios = require('axios');
 const { USD, GBP, EUR } = require('./index.js');
 
 const insertAll = currency => {
+  const endDate = moment(new Date()).format('YYYY-MM-DD');
+
   axios
     .get(
-      `https://api.coindesk.com/v1/bpi/historical/close.json?currency=${currency}&start=2019-04-02&end=2019-07-02`
+      `https://api.coindesk.com/v1/bpi/historical/close.json?currency=${currency}&start=2019-04-02&end=${endDate}`
     )
     .then(data => {
       const { bpi } = data.data;
@@ -15,8 +17,6 @@ const insertAll = currency => {
         };
         arr.push(obj);
       }
-      // console.log('arr', arr);
-
       Promise.all(
         arr.map(element => {
           let newEntry = {
@@ -56,6 +56,7 @@ const insertAll = currency => {
     });
 };
 
+// Uncomment to insert these values in the colelction
 // insertAll('USD'); // 92
 // insertAll('GBP');
 // insertAll('EUR'); // 92
