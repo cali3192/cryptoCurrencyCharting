@@ -1,4 +1,7 @@
 const { getBitcoinData } = require('../helperFunctions/helpers.js');
+
+const Models = require('./../database/models.js');
+
 const axios = require('axios');
 
 module.exports.retrieve = (req, res) => {
@@ -11,6 +14,8 @@ module.exports.retrieve = (req, res) => {
   });
 };
 
+
+// FIXME: wtf is this trash?
 module.exports.convert = (req, res) => {
   const { currency } = req.body;
   const endDate = new Date()

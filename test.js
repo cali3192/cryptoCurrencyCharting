@@ -139,7 +139,7 @@ const moment = require('moment');
 //   .subtract(3, 'month')
 //   .format('LL');
 
-const date1 = moment('2019-07-03')
+const date1 = moment(new Date())
   .subtract(3, 'month')
   .format('YYYY-MM-DD');
 console.log('date1', date1);
