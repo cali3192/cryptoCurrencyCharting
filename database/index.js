@@ -10,7 +10,7 @@ db.once('open', function callback() {
 var Schema = mongoose.Schema;
 
 var bitcoinSchema = new Schema({
-  date: { type: Date, unique: true },
+  date: Date,
   price: Number
 });
 
@@ -20,4 +20,12 @@ const GBP = mongoose.model('GBPModel', bitcoinSchema);
 
 const EUR = mongoose.model('EURModel', bitcoinSchema);
 
-module.exports = { db, USD, GBP, EUR };
+const ETH = mongoose.model('ETHModel', bitcoinSchema);
+
+const RIP = mongoose.model('RIPModel', bitcoinSchema);
+
+const BCH = mongoose.model('BCHModel', bitcoinSchema);
+
+const LTC = mongoose.model('LTCModel', bitcoinSchema);
+
+module.exports = { db, USD, GBP, EUR, ETH, RIP, BCH, LTC };
