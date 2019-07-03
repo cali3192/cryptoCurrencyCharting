@@ -1,7 +1,7 @@
 const axios = require('axios');
 // const request = require('request');
 
-const getBitcoinData = cb => {
+module.exports.getBitcoinData = cb => {
   axios
     .get(
       `https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-04-02&end=2019-07-02`
@@ -16,5 +16,3 @@ const getBitcoinData = cb => {
       cb(err);
     });
 };
-
-module.exports.getBitcoinData = getBitcoinData;

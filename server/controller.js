@@ -1,4 +1,4 @@
-const { getBitcoinData } = require('../helperFunctions/helpers.js');
+const Helpers = require('../helperFunctions/helpers.js');
 const axios = require('axios');
 
 module.exports.retrieve = (req, res) => {
@@ -13,6 +13,11 @@ module.exports.retrieve = (req, res) => {
 
 module.exports.convert = (req, res) => {
   const { currency } = req.body;
+  const endDate = new Date()
+    .toJSON()
+    .slice(0, 10)
+    .replace(/-/g, '-');
+  // const startDate
 
   axios
     .get(
@@ -25,3 +30,4 @@ module.exports.convert = (req, res) => {
       console.log('err in convert', err);
     });
 };
+
