@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import LineChart from './LineChart.jsx';
-import Currency from './Currency.jsx';
 import Axios from 'axios';
 import LoadingSpinner from './LoadingSpinner.jsx';
 
@@ -9,26 +8,74 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      prices: '',
+      rate: [],
     };
+    this.getBTC = this.getBTC.bind(this);
+    this.getETH = this.getETH.bind(this);
+    this.getXRP = this.getXRP.bind(this);
+    this.getBCH = this.getBCH.bind(this);
+    this.getEOS = this.getEOS.bind(this);
   }
 
   componentDidMount() {
+    this.getBTC();
+  }
+
+  getBTC() {
+    Axios.get('https://api.coincap.io/v2/assets/bitcoin/history?interval=d1')
+      .then(({ data }) => {
+        this.setState({
+          rate: data.data,
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  getETH() {
+    Axios.get('https://api.coincap.io/v2/assets/ethereum/history?interval=d1')
+      .then(({ data }) => {
+        this.setState({
+          rate: data.data,
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  getXRP() {
+    Axios.get('https://api.coincap.io/v2/assets/ripple/history?interval=d1')
+      .then(({ data }) => {
+        this.setState({
+          rate: data.data,
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  getBCH() {
     Axios.get(
-      'https://api.coindesk.com/v1/bpi/historical/close.json?start=2019-04-01&end=2019-07-01'
+      'https://api.coincap.io/v2/assets/bitcoin-cash/history?interval=d1'
     )
       .then(({ data }) => {
-        let dataArr = [];
-        let dates = Object.keys(data.bpi);
-        let values = Object.values(data.bpi);
-        for (let i = 0; i < dates.length; i++) {
-          dataArr.push({
-            time: dates[i],
-            value: values[i],
-          });
-        }
         this.setState({
-          prices: dataArr,
+          rate: data.data,
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  getEOS() {
+    Axios.get('https://api.coincap.io/v2/assets/eos/history?interval=d1')
+      .then(({ data }) => {
+        this.setState({
+          rate: data.data,
         });
       })
       .catch(err => {
@@ -45,31 +92,49 @@ export default class App extends Component {
           </a>
         </nav>
         <div className="container-fluid">
+          {this.state.rate.length > 0 ? (
+            <LineChart data={this.state.rate} />
+          ) : (
+            <LoadingSpinner />
+          )}
           <div className="row">
-            {this.state.prices.length > 0 ? (
-              <LineChart data={this.state.prices} />
-            ) : (
-              // <Line
-              //   data={
-              //     (myData = {
-              //       labels: this.state.prices.map(d => d.time),
-              //       datasets: [
-              //         {
-              //           label: 'My first dataset',
-              //           backgroundColor: 'rgb(255, 99, 132)',
-              //           borderColor: 'rgb(255, 99, 132)',
-              //           data: this.state.prices.map(d => d.value),
-              //         },
-              //       ],
-              //     })
-              //   }
-              // />
-              <LoadingSpinner />
-            )}
-            <Currency />
+            <div className="col-md-3" />
+            <div className="col-md-auto">
+              <div className="btn-group" role="group" aria-label="Crypto Coins">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.getBTC}>
+                  Bitcoin
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.getETH}>
+                  Ethereum
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.getXRP}>
+                  XRP
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.getBCH}>
+                  Bitcoin Cash
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.getEOS}>
+                  EOS
+                </button>
+              </div>
+            </div>
+            <div className="col-md-3" />
           </div>
-          <div>Powered by CoinDesk</div>
-          <div>Coin Picker Component</div>
         </div>
       </Fragment>
     );

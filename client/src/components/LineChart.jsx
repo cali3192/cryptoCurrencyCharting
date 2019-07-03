@@ -8,31 +8,28 @@ export default class LineChart extends Component {
 
   render() {
     let myData = {
-      labels: this.props.data.map(d => d.time),
+      labels: this.props.data.map(d => d.date),
       datasets: [
         {
-          label: 'Bitcoin Price Tracker',
+          label: 'Price',
           fill: 'none',
-          lineTension: 0,
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          pointRadius: 2,
-          borderWidth: 1,
-          lineTension: 0,
-          data: this.props.data.map(d => d.value),
+          backgroundColor: '#123abc',
+          borderColor: '#123abc',
+          pointRadius: 0,
+          lineTension: 1,
+          borderWidth: 3,
+          data: this.props.data.map(d => d.priceUsd),
         },
       ],
     };
 
     const chartOptions = {
+      responsive: true,
       scales: {
         xAxes: [
           {
             type: 'time',
             distribution: 'series',
-            time: {
-              unit: 'week',
-            },
           },
         ],
         yAxes: [
@@ -50,7 +47,7 @@ export default class LineChart extends Component {
     };
 
     return (
-      <div className="col-md-8">
+      <div className="col-md-10">
         <Line data={myData} options={chartOptions} />
       </div>
     );

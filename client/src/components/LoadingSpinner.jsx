@@ -18,7 +18,7 @@ class LoadingSpinner extends React.Component {
 
   render() {
     return (
-      <div className="col-md-8 center">
+      <div className="col-md-10">
         <BarLoader
           css={override}
           sizeUnit={'px'}
